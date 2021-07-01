@@ -60,23 +60,27 @@ namespace StudentRecords
 
         }
 
+        private int calculateMark()
+        {
+            int ass1 = this._assignment1 / 10;
+
+            int ass2 = this._assignment2 / 10;
+
+            int ass3 = this._assignment3 / 10;
+
+            int ass4 = (this._assignment1 * 2) / 10;
+
+            int mid = (this._midtermExam * 2) / 10;
+
+            int final = (this._finalExam * 3) / 10;
+
+            return ass1 + ass2 + ass3 + ass4 + mid + final;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
-            /*int parsedValue;
-
-            TextBox objTextBox = (TextBox)sender;
-            if (!int.TryParse(objTextBox.Text, out parsedValue))
-            {
-                MessageBox.Show("This is a number only field");
-                return;
-            }
-
-            MessageBox.Show(this._studentName);*/
-
-            //this.createRecordText();
-
-
+            this.createRecordText(calculateMark());
         }
 
         private void StudentName_TextChanged(object sender, EventArgs e)
@@ -88,37 +92,56 @@ namespace StudentRecords
 
         private void finalExam_TextChanged(object sender, EventArgs e)
         {
-            
+
+            TextBox objTextBox = (TextBox)sender;
+
+            this._finalExam = inputParser(objTextBox);
+
+        }
+
+        private void assignment4_TextChanged(object sender, EventArgs e)
+        {
+            TextBox objTextBox = (TextBox)sender;
+
+            this._assignment4 = inputParser(objTextBox);
         }
 
 
         private void assignment3_TextChanged(object sender, EventArgs e)
         {
+            TextBox objTextBox = (TextBox)sender;
 
+            this._assignment3 = inputParser(objTextBox);
         }
 
         private void assignment2_TextChanged(object sender, EventArgs e)
         {
+            TextBox objTextBox = (TextBox)sender;
 
+            this._assignment2 = inputParser(objTextBox);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void assignment1_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(sender);
-        }
+            TextBox objTextBox = (TextBox)sender;
 
+            this._assignment1 = inputParser(objTextBox);
+        }
+    
         private void medtermExam_TextChanged(object sender, EventArgs e)
         {
+            TextBox objTextBox = (TextBox)sender;
 
+            this._midtermExam = inputParser(objTextBox);
         }
 
 
-        /*public static void WriteFile()
+        public static void WriteFile()
         {
             string path = @"c:\temp\MyTest.txt";
             if (!File.Exists(path))
@@ -141,23 +164,62 @@ namespace StudentRecords
                     Console.WriteLine(s);
                 }
             }
-        }*/
+        }
+
+        
+        private int inputParser(TextBox input)
+        {
+            int parsedValue;
+
+            if (!int.TryParse(input.Text, out parsedValue) && !(input.Text == ""))
+            {
+                MessageBox.Show("This is a number only field");
+            }
+
+            if (parsedValue > 20 || parsedValue < 0)
+            {
+                MessageBox.Show("This field except only numbers between 0 and 100");
+            }
 
 
-        public void createRecordText()
+          
+
+            return parsedValue;
+        }
+        
+
+        public void createRecordText(int finalMark)
         {
             string[] lines =
             {
-                "First line", "Second line", "Third line"
+                this._studentName + ":\t" + finalMark,
             };
+
+            string path = @"C:\CMIS214\StudentMarks.txt";
+
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                File.AppendAllLines(path, lines);
+            }
+
+            // Open the file to read from.
+            /*using (StreamReader sr = File.OpenText(path))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
+                }
+            }*/
 
             //SaveFileDialog emplacement = new SaveFileDialog();
 
             //emplacement.
 
-            string path = @"d:\MyTest.txt";
-
-            File.AppendAllLines(path, lines);
+            
         }
+
+        
     }
 }

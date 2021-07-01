@@ -163,6 +163,7 @@
             this.assignment4.Name = "assignment4";
             this.assignment4.Size = new System.Drawing.Size(230, 20);
             this.assignment4.TabIndex = 12;
+            this.assignment4.TextChanged += new System.EventHandler(this.assignment4_TextChanged);
             // 
             // label5
             // 
