@@ -11,7 +11,7 @@ using System.IO;
 
 namespace StudentRecords
 {
-    public partial class Form1 : Form
+    public partial class StudentMak : Form
     {
 
         public string _studentName;
@@ -30,7 +30,7 @@ namespace StudentRecords
 
 
 
-        public Form1()
+        public StudentMak()
         {
             InitializeComponent();
         }
