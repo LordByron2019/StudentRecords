@@ -77,10 +77,30 @@ namespace StudentRecords
             return ass1 + ass2 + ass3 + ass4 + mid + final;
         }
 
+        private void clearInputs(){
+            assignment1.Text = "";
+            assignment2.Text = "";
+            assignment3.Text = "";
+            assignment4.Text = "";
+            finalExam.Text = "";
+            medtermExam.Text = "";
+            StudentName.Text = "";
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
+           
+            DialogResult res = MessageBox.Show(this._studentName + ":\t" + calculateMark(), "Save mark?", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);  
+            if (res == DialogResult.OK) {  
+                this.createRecordText(calculateMark());  
+                MessageBox.Show(this._studentName + "mark saved successfully!", "" ,MessageBoxButtons.OK ,MessageBoxIcon.Exclamation);
+                //Clear all textBoxes
+                clearInputs();
+            } 
 
-            this.createRecordText(calculateMark());
+            if (res == DialogResult.Cancel) {  
+                MessageBox.Show("Mark not saved!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);   
+            }
         }
 
         private void StudentName_TextChanged(object sender, EventArgs e)
@@ -173,12 +193,12 @@ namespace StudentRecords
 
             if (!int.TryParse(input.Text, out parsedValue) && !(input.Text == ""))
             {
-                MessageBox.Show("This is a number only field");
+                MessageBox.Show("This is a number only field", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (parsedValue > 20 || parsedValue < 0)
             {
-                MessageBox.Show("This field except only numbers between 0 and 100");
+                MessageBox.Show("This field except only numbers between 0 and 100", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
