@@ -93,13 +93,13 @@ namespace StudentRecords
             DialogResult res = MessageBox.Show(this._studentName + ":\t" + calculateMark(), "Save mark?", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);  
             if (res == DialogResult.OK) {  
                 this.createRecordText(calculateMark());  
-                MessageBox.Show(this._studentName + "mark saved successfully!", "" ,MessageBoxButtons.OK ,MessageBoxIcon.Exclamation);
+                MessageBox.Show(this._studentName + "'s mark saved successfully!", "Success" ,MessageBoxButtons.OK ,MessageBoxIcon.Information);
                 //Clear all textBoxes
                 clearInputs();
             } 
 
             if (res == DialogResult.Cancel) {  
-                MessageBox.Show("Mark not saved!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);   
+                MessageBox.Show("Mark not saved!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);   
             }
         }
 
@@ -198,7 +198,7 @@ namespace StudentRecords
 
             if (parsedValue > 20 || parsedValue < 0)
             {
-                MessageBox.Show("This field except only numbers between 0 and 100", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("This field except only numbers between 0 and 20", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -212,7 +212,7 @@ namespace StudentRecords
         {
             string[] lines =
             {
-                this._studentName + ":\t" + finalMark,
+                this._studentName + ":\t\t" + finalMark + "\n",
             };
 
             string path = @"C:\CMIS214\StudentMarks.txt";
@@ -222,24 +222,27 @@ namespace StudentRecords
                 // Create a file to write to.
                 File.AppendAllLines(path, lines);
             }
-
-            // Open the file to read from.
-            /*using (StreamReader sr = File.OpenText(path))
+            else
             {
-                string s;
-                while ((s = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(s);
-                }
-            }*/
-
-            //SaveFileDialog emplacement = new SaveFileDialog();
-
-            //emplacement.
-
+                TextWriter writer = new StreamWriter(path, true);
+                writer.WriteLine(lines[0]);
+                writer.Flush();
+                writer.Close();
+            }
             
         }
 
-        
+        private void student_name_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SeeMark_Click(object sender, EventArgs e)
+        {
+            //Show File content in new window
+            ShowMarks showMarks = new ShowMarks();
+            showMarks.Show();
+
+        }
     }
 }

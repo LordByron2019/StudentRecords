@@ -46,6 +46,7 @@
             this.finalex = new System.Windows.Forms.Label();
             this.finalExam = new System.Windows.Forms.TextBox();
             this.savebtn = new System.Windows.Forms.Button();
+            this.SeeMark = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StudentName
@@ -86,6 +87,7 @@
             this.student_name.Size = new System.Drawing.Size(153, 24);
             this.student_name.TabIndex = 5;
             this.student_name.Text = "Student\'s Name :";
+            this.student_name.Click += new System.EventHandler(this.student_name_Click);
             // 
             // assignment1
             // 
@@ -217,11 +219,26 @@
             this.savebtn.UseVisualStyleBackColor = false;
             this.savebtn.Click += new System.EventHandler(this.button1_Click);
             // 
+            // SeeMark
+            // 
+            this.SeeMark.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.SeeMark.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SeeMark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SeeMark.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SeeMark.Location = new System.Drawing.Point(167, 458);
+            this.SeeMark.Name = "SeeMark";
+            this.SeeMark.Size = new System.Drawing.Size(230, 37);
+            this.SeeMark.TabIndex = 19;
+            this.SeeMark.Text = "See Marks";
+            this.SeeMark.UseVisualStyleBackColor = false;
+            this.SeeMark.Click += new System.EventHandler(this.SeeMark_Click);
+            // 
             // StudentMak
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 555);
+            this.Controls.Add(this.SeeMark);
             this.Controls.Add(this.savebtn);
             this.Controls.Add(this.finalex);
             this.Controls.Add(this.finalExam);
@@ -267,6 +284,7 @@
         private System.Windows.Forms.Label finalex;
         private System.Windows.Forms.TextBox finalExam;
         private System.Windows.Forms.Button savebtn;
+        private System.Windows.Forms.Button SeeMark;
     }
 }
 
